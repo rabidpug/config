@@ -6,10 +6,12 @@ if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; the
   sudo apt install fish -y
   exec sh
 fi
-if [ "$SHELL" != "$(which zsh)" ]; then
+wf=$(which fish)
+fp="${wf:-/usr/local/bin/fish}"
+if [ "$SHELL" != "$fp" ]; then
   echo fish not default shell, changing...
   which zsh | sudo tee -a /etc/shells
-  sudo chsh m -s "$(which zsh)"
+  sudo chsh m -s "$fp"
 fi
 
 DFD=$HOME/.dotfiles
