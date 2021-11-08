@@ -2,4 +2,4 @@
 DFD=$HOME/.dotfiles
 git -C $DFD pull -q
 $DFD/init
-cp -asfr $DFD/.config/ ~/.config/
+cp -asfT $DFD/.config ~/.config
