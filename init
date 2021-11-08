@@ -4,6 +4,7 @@ if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; the
   echo fish not installed, installing...
   sudo apt update
   sudo apt install fish -y
+  exec sh
 fi
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo fish not default shell, changing...
