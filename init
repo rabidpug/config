@@ -6,11 +6,11 @@ fi
 
 DFD=$HOME/.dotfiles
 
-ln -sf "$DFD/update_dotfiles" /usr/local/bin/update_dotfiles
+sudo ln -sf "$DFD/update_dotfiles" /usr/local/bin/update_dotfiles
 
-ln -sf "$DFD/update_dotfiles.service" /etc/systemd/system/update_dotfiles.service
+sudo ln -sf "$DFD/update_dotfiles.service" /etc/systemd/system/update_dotfiles.service
 
-ln -sf "$DFD/update_dotfiles.timer" /etc/systemd/system/update_dotfiles.timer
+sudo ln -sf "$DFD/update_dotfiles.timer" /etc/systemd/system/update_dotfiles.timer
 
 sudo systemctl daemon-reloaad
 
