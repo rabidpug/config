@@ -1,8 +1,8 @@
 #!/bin/sh
-
-if lsb_release -is = "Ubuntu"; or lsb_release -is = "Debian"
+os=$(lsb_release -is)
+if [[ "$os" == "Ubuntu" ]] || [[ "$os" == "Debian" ]]; then
   sudo apt install fish
-end
+fi
 
 DFD=$HOME/.dotfiles
 
