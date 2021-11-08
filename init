@@ -1,9 +1,15 @@
 #!/bin/sh
 os=$(lsb_release -is)
-if [ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]; then
+if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
+  echo fish not installed, installing...
   sudo apt update
   sudo apt install fish -y
 fi
+if [ "$SHELL" != "$(which zsh)" ]; then
+  echo fish not default shell, changing...
+  which zsh | sudo tee -a /etc/shells
+  sudo chsh m -s $(which zsh)
+if
 
 DFD=$HOME/.dotfiles
 
