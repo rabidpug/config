@@ -1,10 +1,12 @@
 #!/bin/sh
 os=$(lsb_release -is)
-rsync -a $HOME/.dotfiles/.config/ $HOME/.config/
+cp -asfr $HOME/.dotfiles/.config/ $HOME/.config/
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
   echo fish not installed, installing...
-  sudo apt update
-  sudo apt install fish hub thefuck fzf -y
+  sudo apt -qq update
+  sudo apt -qq install fish hub thefuck fzf jq unzip -y
+  sh $HOME/.dotfiles/install_exa.sh
+  sh $HOME/.dotfiles/install_gitmux.sh
 fi
 
 wf=$(which fish)
@@ -18,7 +20,7 @@ fi
 if [ ! -d "$HOME/.local/share/omf" ]; then
   curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 fi
-
+tmux source-file ~/.config/tmux/tmux.conf
 DFD=$HOME/.dotfiles
 
 sudo ln -sf "$DFD/update_dotfiles" /usr/local/bin/update_dotfiles
