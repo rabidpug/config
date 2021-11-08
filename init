@@ -1,5 +1,6 @@
 #!/bin/sh
 os=$(lsb_release -is)
+rsync -a $HOME/.dotfiles/.config/ $HOME/.config/
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
   echo fish not installed, installing...
   sudo apt update
