@@ -8,8 +8,8 @@ fi
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo fish not default shell, changing...
   which zsh | sudo tee -a /etc/shells
-  sudo chsh m -s $(which zsh)
-if
+  sudo chsh m -s "$(which zsh)"
+fi
 
 DFD=$HOME/.dotfiles
 
