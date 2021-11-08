@@ -1,16 +1,16 @@
 #!/bin/sh
 os=$(lsb_release -is)
-if [[ "$os" == "Ubuntu" ]] || [[ "$os" == "Debian" ]]; then
+if [ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]; then
   sudo apt install fish
 fi
 
 DFD=$HOME/.dotfiles
 
-ln -sf $DFD/update_dotfiles /usr/local/bin/update_dotfiles
+ln -sf "$DFD/update_dotfiles" /usr/local/bin/update_dotfiles
 
-ln -sf $DFD/update_dotfiles.service /etc/systemd/system/update_dotfiles.service
+ln -sf "$DFD/update_dotfiles.service" /etc/systemd/system/update_dotfiles.service
 
-ln -sf $DFD/update_dotfiles.timer /etc/systemd/system/update_dotfiles.timer
+ln -sf "$DFD/update_dotfiles.timer" /etc/systemd/system/update_dotfiles.timer
 
 sudo systemctl daemon-reloaad
 
