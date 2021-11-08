@@ -1,0 +1,8 @@
+[Unit]
+Description=Update dotfiles daily
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/update_dotfiles
+User=m
+Group=m

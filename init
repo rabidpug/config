@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if lsb_release -is = "Ubuntu"; or lsb_release -is = "Debian"
+  sudo apt install fish
+end
+
+DFD=$HOME/.dotfiles
+
+ln -sf $DFD/update_dotfiles /usr/local/bin/update_dotfiles
+
+ln -sf $DFD/update_dotfiles.service /etc/systemd/system/update_dotfiles.service
+
+ln -sf $DFD/update_dotfiles.timer /etc/systemd/system/update_dotfiles.timer
+
+sudo systemctl daemon-reloaad
+
+sudo systemctl enable --now update_dotfiles.timer

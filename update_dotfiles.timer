@@ -1,0 +1,10 @@
+[Unit]
+Description=Update dotfiles daily
+
+[Timer]
+Unit=update_dotfiles.service
+OnCalendar=Daily
+RandomizedDelaySec=10000
+
+[Install]
+WantedBy=timers.target

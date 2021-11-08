@@ -1,0 +1,5 @@
+#!/bin/sh
+DFD=$HOME/.dotfiles
+git pull -C $DFD -q
+$DFD/init
+rsync -a $DFD/.config/ ~/.config/
