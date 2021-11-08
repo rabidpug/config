@@ -5,8 +5,15 @@ if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; the
   echo fish not installed, installing...
   sudo apt -qq update
   sudo apt -qq install fish hub thefuck fzf jq unzip -y
-  sh $HOME/.dotfiles/install_exa.sh
-  sh $HOME/.dotfiles/install_gitmux.sh
+fi
+if [ -z "$(which exa)" ]; then
+  sh "$HOME/.dotfiles/install_exa.sh"
+fi
+if [ -z "$(which gitmux)" ]; then
+  sh "$HOME/.dotfiles/install_gitmux.sh"
+fi
+if [ ! -f "$HOME/.tmux.conf" ]; then
+  echo 'source-file "$HOME/.config/tmux/tmux.conf"' > "$HOME/.tmux.conf"
 fi
 
 wf=$(which fish)
