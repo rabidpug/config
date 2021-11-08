@@ -3,10 +3,7 @@ os=$(lsb_release -is)
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
   echo fish not installed, installing...
   sudo apt update
-  sudo apt install fish -y
-fi
-if [ ! -d "$HOME/.local/share/omf" ]; then
-  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+  sudo apt install fish hub thefuck fzf -y
 fi
 
 wf=$(which fish)
@@ -15,6 +12,10 @@ if [ "$SHELL" != "$fp" ]; then
   echo fish not default shell, changing...
   which zsh | sudo tee -a /etc/shells
   sudo chsh m -s "$fp"
+fi
+
+if [ ! -d "$HOME/.local/share/omf" ]; then
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 fi
 
 DFD=$HOME/.dotfiles
