@@ -4,7 +4,10 @@ os=$(lsb_release -is)
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
   echo installing fish...
   sudo apt -qq update
-  sudo apt -qq install fish hub thefuck fzf jq unzip tmux -y
+  sudo apt -qq install fish hub thefuck fzf jq unzip tmux neovim -y
+  sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+  sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+  sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
 fi
 if [ -z "$(which exa)" ]; then
   echo installing exa...
@@ -35,9 +38,10 @@ if [ ! -d "$HOME/.local/share/omf" ]; then
   cd ../
   rm -rf tmp
 fi
+u=$(whoami)
 if [[ ! "$SHELL" == *fish ]]; then
   echo changing default shell to fish...
-  sudo chsh m -s "$fp" 
+  sudo chsh "$u" -s "$fp" 
 fi
 DFD=$HOME/.dotfiles
 
