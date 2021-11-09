@@ -1,6 +1,5 @@
 #!/bin/bash
 os=$(lsb_release -is)
-cp -asfT "$HOME/.dotfiles/.config" "$HOME/.config"
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
   echo installing fish...
   sudo apt -qq update
@@ -45,5 +44,6 @@ sudo ln -sf "$DFD/update_dotfiles.timer" /etc/systemd/system/update_dotfiles.tim
 sudo systemctl daemon-reload
 
 sudo systemctl enable --now update_dotfiles.timer
+cp -asfT "$HOME/.dotfiles/.config" "$HOME/.config"
 
 echo install finished. exit shell and come back
