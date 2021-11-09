@@ -2,11 +2,12 @@
 os=$(lsb_release -is)
 cp -asfT "$HOME/.dotfiles/.config" "$HOME/.config"
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
-  echo fish not installed, installing...
+  echo installing fish...
   sudo apt -qq update
   sudo apt -qq install fish hub thefuck fzf jq unzip tmux -y
 fi
 if [ -z "$(which exa)" ]; then
+  echo installing exa...
   sh "$HOME/.dotfiles/install_exa.sh"
 fi
 if [ -z "$(which gitmux)" ]; then

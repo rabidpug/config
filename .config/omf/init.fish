@@ -21,10 +21,10 @@ function gac
   else
     set msg $argv[1]
   end
-  echo git add .
-  echo git commit -m "$msg"
+  git add .
+  git commit -m "$msg"
   if test "$argv[1]" = '-p'; or test "$argv[2]" = '-p'
-    echo git push
+    git push
   end
 end
 
