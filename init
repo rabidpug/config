@@ -1,4 +1,5 @@
 #!/bin/bash
+cp -asfT "$HOME/.dotfiles/.config" "$HOME/.config"
 os=$(lsb_release -is)
 if ([ "$os" = "Ubuntu" ] || [ "$os" = "Debian" ]) && [ -z "$(which fish)" ]; then
   echo installing fish...
@@ -24,14 +25,19 @@ if ! grep -q fish /etc/shells; then
   echo adding fish to /etc/shells...
   echo "$fp" | sudo tee -a /etc/shells
 fi
-if [[ ! "$SHELL" == *fish ]]; then
-  echo changing default shell to fish...
-  sudo chsh m -s "$fp" 
-fi
 
 if [ ! -d "$HOME/.local/share/omf" ]; then
   echo installing omf...
-  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+  mkdir tmp
+  cd tmp
+  wget -q https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
+  fish install --noninteractive
+  cd ../
+  rm -rf tmp
+fi
+if [[ ! "$SHELL" == *fish ]]; then
+  echo changing default shell to fish...
+  sudo chsh m -s "$fp" 
 fi
 DFD=$HOME/.dotfiles
 
@@ -44,6 +50,5 @@ sudo ln -sf "$DFD/update_dotfiles.timer" /etc/systemd/system/update_dotfiles.tim
 sudo systemctl daemon-reload
 
 sudo systemctl enable --now update_dotfiles.timer
-cp -asfT "$HOME/.dotfiles/.config" "$HOME/.config"
 
 echo install finished. exit shell and come back

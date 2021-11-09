@@ -16,7 +16,6 @@ package gh
 package gi
 package git-refresh
 package gityaw
-package https://github.com/Gazorby/fish-abbreviation-tips
 package https://github.com/evanlucas/fish-kubectl-completions
 package https://github.com/wawa19933/fish-systemd
 package hub
