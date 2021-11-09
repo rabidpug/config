@@ -19,10 +19,8 @@ fi
 
 wf=$(which fish)
 fp="${wf:-/usr/local/bin/fish}"
-if [ "$SHELL" != "$fp" ]; then
-  echo fish not default shell, changing...
-  which zsh | sudo tee -a /etc/shells
-  sudo chsh m -s "$fp"
+if [ -z "$(grep fish /etc/shells)" ]; then
+  echo $fp | sudo tee -a /etc/shells
 fi
 
 if [ ! -d "$HOME/.local/share/omf" ]; then
@@ -39,3 +37,5 @@ sudo ln -sf "$DFD/update_dotfiles.timer" /etc/systemd/system/update_dotfiles.tim
 sudo systemctl daemon-reload
 
 sudo systemctl enable --now update_dotfiles.timer
+
+echo run sudo chsh m -s "$fp"
