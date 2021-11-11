@@ -6,6 +6,7 @@ if status is-interactive
     if test "$sesn" = '${workspaceFolderBasename}'
       set sesn 'code'
     end
+    set -q sesn; or set sesn 'hack'
     if tmux has-session -t $sesn 2>/dev/null
       set tpth"(realpath -e "$PWD//")"; or "(realpath -e $HOME/)"
       set mtchpne ''
