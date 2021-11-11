@@ -2,6 +2,9 @@ balias ls 'exa' # ls
 if which batcat 2>&1 >/dev/null
   balias bat 'batcat'
 end
+if which fdfind 2>&1 >/dev/null
+  balias fd 'fdfind'
+end
 balias :q 'exit'
 balias lh 'exa -a'
 balias l 'exa -lbF --git'                                              # list, size, type, git
