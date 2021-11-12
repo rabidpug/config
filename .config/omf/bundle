@@ -17,6 +17,7 @@ package git-refresh
 package gityaw
 package https://github.com/evanlucas/fish-kubectl-completions
 package https://github.com/wawa19933/fish-systemd
+https://github.com/jorgebucaran/autopair.fish
 package hub
 package kill-on-port
 package marlin
