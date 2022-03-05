@@ -8,3 +8,34 @@ if status is-interactive
     bind -M insert \t '__fzf_complete'
   end
 end
+
+ function fish_title
+     tmux_directory_title $_
+   end
+function tmux_directory_title
+  set CMD "$argv[1]"
+  set DIV ":"
+  if contains "$CMD" fish tmux cd exit ':q'
+      set CMD "$LCMD"
+    end
+    if begin [ "$PWD" != "$LPWD" ]; or begin [ "$CMD" != "$LCMD" ]; and [ "$CMD" != "" ]; end; end
+    set LPWD "$PWD"
+    if [ "$CMD" != "" ]
+      set LCMD "$CMD"
+    end
+    if test -z "$CMD"
+      set DIV ""
+    end
+    set PPWD (string replace "$HOME" "~" $PWD)
+    set INPUT "$CMD""$DIV""$PPWD"
+    set SUBSTRING (echo $INPUT| awk '{ print substr( $0, length($0) - 19, length($0) ) }')
+    echo LPWD: $LPWD >> ~/tmp
+    echo PWD: $PWD >> ~/tmp
+    echo PPWD: $PPWD >> ~/tmp
+    echo DIV: $DIV >> ~/tmp
+    echo LCMD: $LCMD >> ~/tmp
+    echo CMD: $CMD >> ~/tmp
+    echo SUBSTRING: $SUBSTRING >> ~/tmp
+    tmux rename-window "$SUBSTRING"
+  end
+end
