@@ -1,7 +1,7 @@
 if status is-interactive
   set SCRN (tty)
   set sesn 'hack'
-  if which tmux 2>&1 >/dev/null; and test "$USER" != 'root'; and test -z "$TMUX"; and not string match -r 'tty[0-9]+$' "$SCRN"
+  if which tmux 2>&1 >/dev/null; and test -z "$TMUX"; and not string match -r 'tty[0-9]+$' "$SCRN"
     set TERM screen-256color
     if test "$sesn" = '${workspaceFolderBasename}'
       set sesn 'code'
