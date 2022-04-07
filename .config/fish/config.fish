@@ -29,13 +29,6 @@ function tmux_directory_title
     set PPWD (string replace "$HOME" "~" $PWD)
     set INPUT "$CMD""$DIV""$PPWD"
     set SUBSTRING (echo $INPUT| awk '{ print substr( $0, length($0) - 19, length($0) ) }')
-    echo LPWD: $LPWD >> ~/tmp
-    echo PWD: $PWD >> ~/tmp
-    echo PPWD: $PPWD >> ~/tmp
-    echo DIV: $DIV >> ~/tmp
-    echo LCMD: $LCMD >> ~/tmp
-    echo CMD: $CMD >> ~/tmp
-    echo SUBSTRING: $SUBSTRING >> ~/tmp
     tmux rename-window "$SUBSTRING"
   end
 end
