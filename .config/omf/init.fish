@@ -32,8 +32,8 @@ function gac
 end
 
 function mkcd
-  mkdir -p argv
-  cd argv
+  mkdir -p $argv
+  cd $argv
 end
 
 function grcd
