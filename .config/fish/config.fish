@@ -4,6 +4,7 @@ if status is-interactive
   bind \e\[1\;5D backward-word
   set -U fish_greeting "🐟"
   set -U FZF_COMPLETE 1
+  . /usr/share/fish/vendor_functions.d/fzf_key_bindings.fish
   fzf_key_bindings
   function fish_user_key_bindings
     bind -M insert \t '__fzf_complete'
